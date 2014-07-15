@@ -30,7 +30,7 @@ If you are installing into a OpenWRT device, add the following packages
 
     opkg update; opkg install openssl-util, lua, luasocket, luasec
 
-These are dependencies for the bbl-twitter library (one of them could be already installed)
+These are dependencies for the bbl-twitter library (some could be already installed)
 
 Copy the following files
 
@@ -42,22 +42,22 @@ somewhere in the OpenWRT. For example, into a /root/twrnip directory:
 
     scp bbl-twitter.lua twrnip.lua twrnip.conf root@192.168.100.1:/root/twrnip/
 
-You might edit the twrnip.conf file to change, for example, what additional tags you want posted. Also there you can change
+You might edit the `twrnip.conf` file to change, for example, what additional tags you want posted. Also there you can change
 the name of the interface whose IP you want to publish (usually `pppoe-wan`, but it might be `ppp0` or something)
 
-Then log in into OpenWRT, go to the directory where you installed and run the tool manually doing `$ lua twrnip.lua` to authenticate with twitter.com
+Then log in into OpenWRT, go to the directory where you installed, and run the tool manually doing `$ lua twrnip.lua` to authenticate with twitter.com
 
 You'll be instructed to follow a link and then write in a PIN number found on that page. Just follow the on-screen instructions.
 Once the authentication is complete 3 files will be generated: `token.key`, `token.secret` and `screen.name`. You might save these files
 for use in another installation (I think).
 
-Once this is done you may test the installation doing `$ lua twrnip.lua` again.
+Once this is done you may test the installation doing `$ lua twrnip.lua` again. This should post tweet with you IP address.
 
 To automate the execution of the tool on IP changes copy the `99-twrnip` file into `/etc/hotplug/iface/`. Notice this is for 12.09 
 "Attitude Adjustment" and newer OpenWRTs that use hotplug. 
-You might have to edit this file if you installed the tool somewhere besides `/root/twrnip/`. 
-Also this script watches to `wan` interface to detect a renumeration, if in your
-installation it is otherwise, edit this file. You can test everything forcing a IP renumration doing `ifup wan`.
+You will have to edit this file if you installed the tool somewhere besides `/root/twrnip/`. 
+Also this script watches the `wan` interface to detect a renumeration, if you changed that in OpenWRT, 
+edit this file. You can test everything forcing a IP renumeration doing `ifup wan`.
 
 
 ## License
