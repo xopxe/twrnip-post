@@ -14,6 +14,15 @@ This service is half of the solution: it will tweet your IP address as soon as i
 
 Then anyone (including yourself) can check the announcement and copy&paste the IP into a web browser, or stream them in using the twitter API and configure a DNS or patch the hosts file, you get the idea. 
 
+The messages look as follows:
+
+    #twrnip 
+    #homerouter
+    179.25.7.166
+
+The #twrnip at the beginning indicates that this is a twrnip message, then might come some additional tags (in case the user has seveal services)
+and finally an IP address.
+
 
 ## Installation
 
