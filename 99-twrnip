@@ -1,0 +1,21 @@
+#!/bin/sh 
+
+# Interface that goes down and up when a IP renumertion happens
+IFNAME="wan"
+
+# Where the twrnip tool is installed
+TWPATH="/root/twrnip"
+
+BINARY="lua twrnip.lua"
+
+# echo ${BINARY} > /tmp/twrnip.last
+# echo "$ACTION $INTERFACE" >> /tmp/twrnip.env
+
+[ "$ACTION" = ifup ] && {
+	if [ "${INTERFACE}" = ${IFNAME} ]; then 
+		sleep 10
+		cd $TWPATH
+   		${BINARY} > /tmp/twrnip.out 2>&1 
+   	fi
+}
+
