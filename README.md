@@ -7,7 +7,7 @@ The typical place to install this is a home router using OpenWRT.
 
 ## What is twrnip?
 
-Twrnip is a protocol for doing over twitter what you usually would do using a Dynamic DNS service: have you temporary IP address
+Twrnip is a protocol for doing over twitter what you usually would do using a Dynamic DNS service: have your temporary IP address
 available for all to see.
 
 This service is half of the solution: it will tweet your IP address as soon as it changes (it will also delete the obsolete announcement, of course)
@@ -19,19 +19,19 @@ Then anyone (including yourself) can check the announcement and copy&paste the I
 
 If you are installing into a OpenWRT device, add the following packages
 
-    `opkg update; opkg install openssl-util, lua, luasocket, luasec`
+    opkg update; opkg install openssl-util, lua, luasocket, luasec
 
 These are dependencies for the bbl-twitter library (one of them could be already installed)
 
 Copy the following files
 
-    * bbl-twitter.lua
-    * twrnip.lua
-    * twrnip.conf
+* `bbl-twitter.lua`
+* `twrnip.lua`
+* `twrnip.conf`
 
 somewhere in the OpenWRT. For example, into a /root/twrnip directory:
 
-    `scp bbl-twitter.lua twrnip.lua twrnip.conf root@192.168.100.1:/root/twrnip/`
+    scp bbl-twitter.lua twrnip.lua twrnip.conf root@192.168.100.1:/root/twrnip/
 
 You might edit the twrnip.conf file to change, for example, what additional tags you want posted. Also there you can change
 the name of the interface whose IP you want to publish (usually `pppoe-wan`, but it might be `ppp0` or something)
@@ -48,7 +48,7 @@ To automate the execution of the tool on IP changes copy the `99-twrnip` file in
 "Attitude Adjustment" and newer OpenWRTs that use hotplug. 
 You might have to edit this file if you installed the tool somewhere besides `/root/twrnip/`. 
 Also this script watches to `wan` interface to detect a renumeration, if in your
-installation it is otherwise, edit this file.
+installation it is otherwise, edit this file. You can test everything forcing a IP renumration doing `ifup wan`.
 
 
 ## License
@@ -59,6 +59,7 @@ This is licensed under MIT, see COPYRIGHT file.
 ## Who?
 
 Copyright (C) 2014 Jorge Visca, jvisca@fing.edu.uy
+
 
 
 
