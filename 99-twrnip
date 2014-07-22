@@ -1,5 +1,9 @@
 #!/bin/sh 
 
+# This is a hotplug script to trigger twrnip client
+# when an interface goes up (presumably on IP change)
+# Place this file in /etc/hotplug/iface
+
 # Interface that goes down and up when a IP renumertion happens
 IFNAME="wan"
 
