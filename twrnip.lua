@@ -85,7 +85,16 @@ print ('Retrieving previous id:', oldid, err)
 print ('Statusing:---------'); 
 print(s)
 print ('-------------------')
-local ret = assert(client:update_status(s))
+
+local i=0
+repeat
+  local ret, err = client:update_status(s)
+  if not ret then
+    i=i+1
+    print ('Error statusing:', i, err)
+    os.execute('sleep 60')
+  end
+until ret or i==10
 
 local newid = ret:match('"id":(%d+),')
 print ('Current id:', newid )
