@@ -1,9 +1,7 @@
-local state_path = '/tmp'
-
 local bbl = require("bbl-twitter")
 local twitter_config = bbl.twitter_config
 
-conf = {
+local conf = {
   state_path = '/tmp',
   services = {'home'},
   interface = 'pppoe-wan',
@@ -79,7 +77,7 @@ end
 lines[#lines+1] = ip 
 local s = table.concat(lines, '\n')
 
-local oldid, err = read_file(state_path .. '/twrnip_last_id')
+local oldid, err = read_file(conf.state_path .. '/twrnip_last_id')
 print ('Retrieving previous id:', oldid, err)
 
 print ('Statusing:---------'); 
@@ -98,7 +96,7 @@ until ret or i==10
 
 local newid = ret:match('"id":(%d+),')
 print ('Current id:', newid )
-print('Saving current id:', write_file(state_path .. '/twrnip_last_id', newid))
+print('Saving current id:', write_file(conf.state_path .. '/twrnip_last_id', newid))
 
 if oldid then 
 	assert(client:signed_request(
