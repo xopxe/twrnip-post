@@ -30,7 +30,7 @@ No, it won't publish port numbers, because that would cross network layers.
 
 You will need some packages. If you are installing into a OpenWRT device, do
 
-    $ opkg update; opkg install openssl-util, lua, luasocket, luasec
+    $ opkg update; opkg install openssl-util lua luasocket luasec
 
 These are dependencies for the bbl-twitter library (some could be already installed)
 
@@ -53,7 +53,7 @@ You'll be instructed to follow a link and then write in a PIN number found on th
 Once the authentication is complete 3 files will be generated: `token.key`, `token.secret` and `screen.name`. You might save these files
 for use in another installation (I think).
 
-Once this is done you may test the installation doing `$ lua twrnip.lua` again. This should post a tweet with you IP address.
+Once this is done you may test the installation doing `$ lua twrnip.lua` again. This should post a tweet with your IP address.
 
 To automate the execution of the tool on IP changes copy the `99-twrnip` file into `/etc/hotplug/iface/`. Notice this is for 12.09 
 "Attitude Adjustment" and newer OpenWRTs that use hotplug. 
