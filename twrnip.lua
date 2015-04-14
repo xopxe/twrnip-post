@@ -1,9 +1,9 @@
 local bbl = require("bbl-twitter")
 local twitter_config = bbl.twitter_config
 
-local conf = {
+conf = {
   state_path = '/tmp',
-  services = {'home'},
+  services = {'#home'},
   interface = 'pppoe-wan',
 } --defaults
 
@@ -75,7 +75,7 @@ for i=1, #conf.services do
   lines[#lines+1] = conf.services[i]
 end
 lines[#lines+1] = ip 
-local s = table.concat(lines, '\n')
+local s = table.concat(lines, ' ')
 
 local oldid, err = read_file(conf.state_path .. '/twrnip_last_id')
 print ('Retrieving previous id:', oldid, err)
@@ -84,17 +84,9 @@ print ('Statusing:---------');
 print(s)
 print ('-------------------')
 
-local i=0
-repeat
-  local ret, err = client:update_status(s)
-  if not ret then
-    i=i+1
-    print ('Error statusing:', i, err)
-    os.execute('sleep 60')
-  end
-until ret or i==10
+local retstatusing = assert(client:update_status(s))
 
-local newid = ret:match('"id":(%d+),')
+local newid = retstatusing:match('"id":(%d+),')
 print ('Current id:', newid )
 print('Saving current id:', write_file(conf.state_path .. '/twrnip_last_id', newid))
 
