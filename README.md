@@ -55,7 +55,7 @@ for use in another installation (I think).
 
 Once this is done you may test the installation doing `$ lua twrnip.lua` again. This should post a tweet with your IP address.
 
-To automate the execution of the tool on IP changes copy the `99-twrnip` file into `/etc/hotplug/iface/`. Notice this is for 12.09 
+To automate the execution of the tool on IP changes copy the `99-twrnip` file into `/etc/hotplug.d/iface/`. Notice this is for 12.09 
 "Attitude Adjustment" and newer OpenWRTs that use hotplug. 
 You will have to edit this file if you installed the tool somewhere besides `/root/twrnip/`. 
 Also this script watches the `wan` interface to detect a renumeration, so if you changed that in OpenWRT, 
